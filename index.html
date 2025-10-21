@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quest | From Noob to Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #06b6d4;
+            --accent-dark: #0891b2;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: var(--light);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--gray-light);
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            color: var(--gray-light);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        .path-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .path-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .path-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .path-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .path-card .level {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .path-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .path-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: var(--gray-light);
+        }
+
+        .path-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .path-card .duration {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .path-card .btn {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .path-card .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .path-card .btn-youtube {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .path-card .btn-youtube:hover {
+            background: var(--danger);
+        }
+
+        .path-card .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* AI Visualization */
+        .ai-visualization {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .ai-visualization::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .visualization-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .visualization-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .visualization-content p {
+            margin-bottom: 1.5rem;
+            color: var(--gray-light);
+            font-size: 1.1rem;
+        }
+
+        .neural-network {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .neural-layer {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .neuron {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .neuron.active {
+            background: var(--success);
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.7);
+        }
+
+        .connection {
+            position: absolute;
+            background: rgba(6, 182, 212, 0.3);
+            transform-origin: 0 0;
+            z-index: 1;
+            transition: all 0.5s ease;
+            height: 2px;
+        }
+
+        .connection.active {
+            background: rgba(34, 197, 94, 0.5);
+        }
+
+        .connection.strong {
+            background: rgba(34, 197, 94, 0.7);
+            height: 3px;
+        }
+
+        .connection.weak {
+            background: rgba(6, 182, 212, 0.1);
+            height: 1px;
+        }
+
+        .visualization-controls {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid var(--glass-border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .control-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .training-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .training-stat {
+            text-align: center;
+        }
+
+        .training-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .training-label {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            padding: 6rem 0;
+        }
+
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat {
+            text-align: center;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .milestones {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 2.5rem;
+        }
+
+        .milestone {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .milestone:before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+            border: 2px solid var(--gray);
+        }
+
+        .milestone.completed:before {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .milestone.active:before {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+        }
+
+        .milestone-label {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-top: 10px;
+        }
+
+        .milestones:after {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        /* Interactive Lessons */
+        .interactive-lessons {
+            padding: 6rem 0;
+        }
+
+        .lesson-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .lesson-title {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .lesson-content {
+            margin-bottom: 2rem;
+        }
+
+        .lesson-text {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: var(--gray-light);
+        }
+
+        .interactive-element {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .interactive-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .code-example {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+
+        .quiz-question {
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-light);
+        }
+
+        .quiz-option:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--accent);
+            background: rgba(6, 182, 212, 0.1);
+            color: white;
+        }
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lesson-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .lesson-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .lesson-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            padding: 6rem 0;
+        }
+
+        .assistant-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background: rgba(6, 182, 212, 0.1);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+        }
+
+        .chat-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .project-card p {
+            color: var(--gray-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-difficulty {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .beginner {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .intermediate {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .advanced {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--dark-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--glass-border);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .code-container {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #334155;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .project-instructions {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .youtube-links {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--warning);
+        }
+
+        .youtube-links h4 {
+            color: var(--warning);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .youtube-links ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .youtube-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .youtube-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .youtube-links a:hover {
+            color: var(--accent-dark);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .user-stats {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .visualization-container {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .path-card .btn-container {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" id="logo">
+                    <i class="fas fa-robot"></i> AI Quest
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <span class="stat-label">Level:</span>
+                        <span class="stat-value" id="userLevel">1</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">XP:</span>
+                        <span class="stat-value" id="userXP">0/100</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Streak:</span>
+                        <span class="stat-value" id="userStreak">0 days</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Journey from AI Noob to Pro Starts Here</h1>
+            <p>Master artificial intelligence through interactive lessons, visual animations, and real projects. Level up as you learn!</p>
+            <button class="cta-button" id="heroCTA">Start Your AI Quest</button>
+        </div>
+    </section>
+
+    <!-- Learning Path Section -->
+    <section class="learning-path" id="learning-path">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your AI Learning Journey</h2>
+                <p>Progress through 4 levels from complete beginner to AI expert</p>
+            </div>
+            <div class="path-container">
+                <!-- Level 1 -->
+                <div class="path-card">
+                    <span class="level">Level 1: AI Explorer</span>
+                    <h3>Understanding AI Basics</h3>
+                    <ul>
+                        <li>What is AI and how does it work?</li>
+                        <li>AI in everyday life</li>
+                        <li>Basic AI terminology</li>
+                        <li>Your first AI interaction</li>
+                        <li>Simple AI applications</li>
+                    </ul>
+                    <div class="duration"><i class="far fa-clock"></i> 2-3 weeks • 5 lessons</div>
+                    <div class="btn-container">
+                        <button class="btn start-level" data-level="1">Start Level 1</button>
+                        <button class="btn btn-youtube youtube-level" data-level="1">
+                            <i class="fab fa-youtube"></i> Watch Tutorials
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Level 2 -->
+                <div class="path-card">
+                    <span class="level">Level 2: AI Apprentice</span>
+                    <h3>Working with AI Tools</h3>
+                    <ul>
+                        <li>Mastering AI prompting</li>
+                        <li>Using ChatGPT effectively</li>
+                        <li>AI for writing and research</li>
+                        <li>Image generation basics</li>
+                        <li>AI productivity tools</li>
+                    </ul>
+                    <div class="duration"><i class="far fa-clock"></i> 3-4 weeks • 8 lessons</div>
+                    <div class="btn-container">
+                        <button class="btn start-level" data-level="2">Start Level 2</button>
+                        <button class="btn btn-youtube youtube-level" data-level="2">
+                            <i class="fab fa-youtube"></i> Watch Tutorials
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="path-card">
+                    <span class="level">Level 3: AI Specialist</span>
+                    <h3>Building AI Skills</h3>
+                    <ul>
+                        <li>Advanced prompt engineering</li>
+                        <li>AI for coding and debugging</li>
+                        <li>Data analysis with AI</li>
+                        <li>AI project management</li>
+                        <li>Custom AI workflows</li>
+                    </ul>
+                    <div class="duration"><i class="far fa-clock"></i> 4-5 weeks • 10 lessons</div>
+                    <div class="btn-container">
+                        <button class="btn start-level" data-level="3">Start Level 3</button>
+                        <button class="btn btn-youtube youtube-level" data-level="3">
+                            <i class="fab fa-youtube"></i> Watch Tutorials
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Level 4 -->
+                <div class="path-card">
+                    <span class="level">Level 4: AI Master</span>
+                    <h3>Advanced AI Applications</h3>
+                    <ul>
+                        <li>Building custom AI solutions</li>
+                        <li>AI automation systems</li>
+                        <li>Advanced AI integrations</li>
+                        <li>AI ethics and best practices</li>
+                        <li>Teaching others about AI</li>
+                    </ul>
+                    <div class="duration"><i class="far fa-clock"></i> 5-6 weeks • 12 lessons</div>
+                    <div class="btn-container">
+                        <button class="btn start-level" data-level="4">Start Level 4</button>
+                        <button class="btn btn-youtube youtube-level" data-level="4">
+                            <i class="fab fa-youtube"></i> Watch Tutorials
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Visualization -->
+    <section class="ai-visualization" id="ai-visualization">
+        <div class="container">
+            <div class="section-title">
+                <h2>See How AI Actually Works</h2>
+                <p>Interactive visualization of neural networks and machine learning</p>
+            </div>
+            <div class="visualization-container">
+                <div class="visualization-content">
+                    <h2>How Neural Networks Learn</h2>
+                    <p>AI models like ChatGPT use neural networks that work similarly to our brains. They have layers of "neurons" that pass information to each other.</p>
+                    <p>When you ask a question, the AI processes it through these layers, with each layer understanding different aspects of your request.</p>
+                    <p>Click "Activate AI" to see how information flows through a neural network in real-time!</p>
+                </div>
+                <div class="neural-network" id="neuralNetwork">
+                    <!-- Neural network visualization will be generated here -->
+                </div>
+            </div>
+            <div class="training-stats">
+                <div class="training-stat">
+                    <div class="training-value" id="epochCount">0</div>
+                    <div class="training-label">Training Epochs</div>
+                </div>
+                <div class="training-stat">
+                    <div class="training-value" id="accuracy">0%</div>
+                    <div class="training-label">Model Accuracy</div>
+                </div>
+                <div class="training-stat">
+                    <div class="training-value" id="loss">0.00</div>
+                    <div class="training-label">Loss Value</div>
+                </div>
+            </div>
+            <div class="visualization-controls">
+                <button class="control-btn" id="activateAI">Activate AI</button>
+                <button class="control-btn" id="resetAI">Reset</button>
+                <button class="control-btn" id="trainAI">Train Model</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Tracker -->
+    <section class="progress-tracker" id="progress-tracker">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Learning Progress</h2>
+                <p>Track your journey from AI noob to pro with milestones and achievements</p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-stats">
+                    <div class="stat">
+                        <div class="stat-number" id="completedLessons">0</div>
+                        <div class="stat-label">Lessons Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="completedProjects">0</div>
+                        <div class="stat-label">Projects Finished</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="daysStreak">0</div>
+                        <div class="stat-label">Learning Streak</div>
+                    </div>
+                </div>
+                <div class="milestones">
+                    <div class="milestone completed">
+                        <div class="milestone-label">AI Basics</div>
+                    </div>
+                    <div class="milestone completed">
+                        <div class="milestone-label">Prompt Mastery</div>
+                    </div>
+                    <div class="milestone active">
+                        <div class="milestone-label">AI Tools</div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-label">Advanced Skills</div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-label">AI Master</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Lessons -->
+    <section class="interactive-lessons" id="interactive-lessons">
+        <div class="container">
+            <div class="section-title">
+                <h2>Interactive AI Lessons</h2>
+                <p>Learn by doing with hands-on lessons and immediate feedback</p>
+            </div>
+            <div class="lesson-container">
+                <div class="lesson-header">
+                    <div class="lesson-title">Lesson: How to Talk to AI Effectively</div>
+                    <div>Progress: <span id="lessonProgress">1/5</span></div>
+                </div>
+                <div class="lesson-content">
+                    <div class="lesson-text">
+                        <p>The key to getting good results from AI is learning how to ask the right questions. This is called "prompt engineering."</p>
+                        <p>Good prompts are specific, clear, and provide enough context for the AI to understand what you want.</p>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">Try It Yourself: Improve This Prompt</div>
+                        <div class="code-example" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);">
+                            "Write about AI"
+                        </div>
+                        <p>This prompt is too vague. The AI doesn't know what kind of writing you want, who it's for, or how long it should be.</p>
+                        <div class="code-example" style="background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3);">
+                            "Write a 300-word blog post introduction about AI for small business owners. Explain how AI can save them time on administrative tasks. Use a friendly, encouraging tone."
+                        </div>
+                        <p>This prompt gives clear instructions about length, audience, content, and tone.</p>
+                        <button class="lesson-btn" id="tryPrompt">Try Your Own Prompt</button>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div class="interactive-title">Quick Quiz</div>
+                        <div class="quiz-question">What makes a prompt more effective?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="false">Using technical jargon</div>
+                            <div class="quiz-option" data-correct="true">Being specific about what you want</div>
+                            <div class="quiz-option" data-correct="false">Making it as short as possible</div>
+                            <div class="quiz-option" data-correct="true">Providing context and examples</div>
+                        </div>
+                        <button class="lesson-btn" id="checkAnswer">Check Answer</button>
+                    </div>
+                </div>
+                <div class="lesson-navigation">
+                    <button class="lesson-btn" id="prevLesson">Previous Lesson</button>
+                    <button class="lesson-btn" id="nextLesson">Next Lesson</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant -->
+    <section class="ai-assistant" id="ai-assistant">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Learning Assistant</h2>
+                <p>Get instant help with any AI concept or problem</p>
+            </div>
+            <div class="assistant-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        Hi! I'm your AI learning assistant. I can help explain concepts, debug problems, or answer any questions about your AI journey. What would you like to know?
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Ask me anything about AI...">
+                    <button id="sendMessage">Ask</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Build Your AI Portfolio</h2>
+                <p>Apply what you've learned with real projects at different difficulty levels</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-difficulty beginner">Beginner</span>
+                    <h3>AI Content Creator</h3>
+                    <p>Use AI to create a blog post, social media content, and email newsletter for a fictional business.</p>
+                    <button class="btn start-project" data-project="1">Start Project</button>
+                </div>
+                <div class="project-card">
+                    <span class="project-difficulty beginner">Beginner</span>
+                    <h3>Personal Research Assistant</h3>
+                    <p>Build a system that uses AI to research any topic and create a summary report.</p>
+                    <button class="btn start-project" data-project="2">Start Project</button>
+                </div>
+                <div class="project-card">
+                    <span class="project-difficulty intermediate">Intermediate</span>
+                    <h3>AI Study Buddy</h3>
+                    <p>Create an AI-powered tool that helps you learn new subjects through Q&A and explanations.</p>
+                    <button class="btn start-project" data-project="3">Start Project</button>
+                </div>
+                <div class="project-card">
+                    <span class="project-difficulty intermediate">Intermediate</span>
+                    <h3>Business Automation</h3>
+                    <p>Design AI workflows to automate common business tasks like email responses and data entry.</p>
+                    <button class="btn start-project" data-project="4">Start Project</button>
+                </div>
+                <div class="project-card">
+                    <span class="project-difficulty advanced">Advanced</span>
+                    <h3>Custom AI Assistant</h3>
+                    <p>Build a specialized AI assistant for a specific industry or personal use case.</p>
+                    <button class="btn start-project" data-project="5">Start Project</button>
+                </div>
+                <div class="project-card">
+                    <span class="project-difficulty advanced">Advanced</span>
+                    <h3>AI Integration Project</h3>
+                    <p>Integrate multiple AI tools to create a comprehensive solution for a real-world problem.</p>
+                    <button class="btn start-project" data-project="6">Start Project</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AI Quest</h3>
+                    <p>Your journey from AI noob to pro. Practical skills, interactive learning, and real results.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Learning Path</h3>
+                    <ul>
+                        <li><a class="footer-link" data-section="learning-path">Level 1: AI Explorer</a></li>
+                        <li><a class="footer-link" data-section="learning-path">Level 2: AI Apprentice</a></li>
+                        <li><a class="footer-link" data-section="learning-path">Level 3: AI Specialist</a></li>
+                        <li><a class="footer-link" data-section="learning-path">Level 4: AI Master</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a class="footer-link" data-section="ai-visualization">AI Visualizations</a></li>
+                        <li><a class="footer-link" data-section="interactive-lessons">Interactive Lessons</a></li>
+                        <li><a class="footer-link" data-section="projects">Project Library</a></li>
+                        <li><a class="footer-link" data-section="ai-assistant">AI Assistant</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AI Quest. Transform from AI noob to pro.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Level Start Modal -->
+    <div class="modal" id="levelModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalLevelTitle">Start Level</h3>
+                <button class="close-modal" id="closeLevelModal">&times;</button>
+            </div>
+            <p id="modalLevelDescription">You're about to start a new learning level. Are you ready?</p>
+            
+            <div class="youtube-links" id="levelYoutubeLinks">
+                <!-- YouTube links will be inserted here -->
+            </div>
+            
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="lesson-btn" style="background: var(--gray);" id="cancelLevel">Cancel</button>
+                <button class="lesson-btn" id="confirmLevel">Start Learning</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Start Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalProjectTitle">Start Project</h3>
+                <button class="close-modal" id="closeProjectModal">&times;</button>
+            </div>
+            <div id="modalProjectDescription">
+                <!-- Project description will be inserted here -->
+            </div>
+            <div class="project-instructions">
+                <h4>Project Instructions:</h4>
+                <p id="projectInstructions"></p>
+            </div>
+            <div class="code-header">
+                <h4>Starter Code (Python):</h4>
+                <button class="copy-btn" id="copyCode">Copy Code</button>
+            </div>
+            <div class="code-container">
+                <pre id="projectStarterCode"></pre>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="lesson-btn" style="background: var(--gray);" id="cancelProject">Cancel</button>
+                <button class="lesson-btn" id="confirmProject">Start Project</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User Progress System
+        let userLevel = 1;
+        let userXP = 0;
+        let userStreak = 0;
+        let completedLessons = 0;
+        let completedProjects = 0;
+        let currentLevel = 0;
+        let currentProject = 0;
+
+        // Level Data with YouTube Tutorials
+        const levelData = {
+            1: {
+                title: "Level 1: AI Explorer - Understanding AI Basics",
+                description: "You're about to start Level 1: AI Explorer. This level covers AI basics, terminology, and simple applications. Ready to begin your AI journey?",
+                youtubeLinks: [
+                    { title: "AI for Beginners - What is Artificial Intelligence?", url: "https://youtu.be/JMUxmLyrhSk" },
+                    { title: "Machine Learning Explained in 5 Minutes", url: "https://youtu.be/ukzFI9rgwfU" },
+                    { title: "Neural Networks Simply Explained", url: "https://youtu.be/bfmFfD2RIcg" }
+                ]
+            },
+            2: {
+                title: "Level 2: AI Apprentice - Working with AI Tools", 
+                description: "You're about to start Level 2: AI Apprentice. This level focuses on mastering AI tools and prompt engineering. Ready to level up?",
+                youtubeLinks: [
+                    { title: "Mastering ChatGPT - Complete Tutorial", url: "https://youtu.be/jC4v5AS4RIM" },
+                    { title: "Prompt Engineering Guide for Beginners", url: "https://youtu.be/BPZ2YcrDcEs" },
+                    { title: "AI Tools for Productivity and Creativity", url: "https://youtu.be/2G7Z7e6a1oQ" }
+                ]
+            },
+            3: {
+                title: "Level 3: AI Specialist - Building AI Skills",
+                description: "You're about to start Level 3: AI Specialist. This level covers advanced AI skills and custom workflows. Ready to become an AI specialist?",
+                youtubeLinks: [
+                    { title: "Advanced Prompt Engineering Techniques", url: "https://youtu.be/BPZ2YcrDcEs" },
+                    { title: "AI for Coding and Debugging", url: "https://youtu.be/2G7Z7e6a1oQ" },
+                    { title: "Building Custom AI Workflows", url: "https://youtu.be/jC4v5AS4RIM" }
+                ]
+            },
+            4: {
+                title: "Level 4: AI Master - Advanced AI Applications",
+                description: "You're about to start Level 4: AI Master. This is the final level where you'll master advanced AI applications. Ready to become an AI master?",
+                youtubeLinks: [
+                    { title: "Building Custom AI Solutions", url: "https://youtu.be/jC4v5AS4RIM" },
+                    { title: "AI Automation Systems", url: "https://youtu.be/2G7Z7e6a1oQ" },
+                    { title: "AI Ethics and Best Practices", url: "https://youtu.be/BPZ2YcrDcEs" }
+                ]
+            }
+        };
+
+        // Project Data with Python Starter Code
+        const projectData = {
+            1: {
+                title: "AI Content Creator",
+                description: "Start the AI Content Creator project. You'll use AI to create blog posts, social media content, and newsletters for a fictional business.",
+                instructions: "1. Install required packages: pip install openai python-dotenv\n2. Set up your OpenAI API key in a .env file\n3. Run the script and customize the content for your business\n4. Extend the script to generate social media posts and email newsletters",
+                starterCode: `import openai
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Set up OpenAI API
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+def generate_blog_post(topic, business_name, tone="professional", word_count=500):
+    """
+    Generate a blog post using AI
+    """
+    prompt = f"Write a {word_count}-word blog post about {topic} for {business_name}. Use a {tone} tone."
+    
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a professional content writer."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=word_count * 2,
+        temperature=0.7
+    )
+    
+    return response.choices[0].message.content
+
+def generate_social_media_post(topic, platform="twitter"):
+    """
+    Generate social media content
+    """
+    prompt = f"Create a {platform} post about {topic}. Include relevant hashtags."
+    
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a social media manager."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=100,
+        temperature=0.8
+    )
+    
+    return response.choices[0].message.content
+
+# Example usage
+if __name__ == "__main__":
+    # Generate blog post
+    blog_post = generate_blog_post(
+        topic="how AI can help small businesses",
+        business_name="TechSolutions Inc.",
+        tone="friendly",
+        word_count=300
+    )
+    print("Blog Post:\\n", blog_post)
+    
+    # Generate Twitter post
+    twitter_post = generate_social_media_post(
+        topic="AI for business growth",
+        platform="twitter"
+    )
+    print("\\nTwitter Post:\\n", twitter_post)`
+            },
+            // ... (other project data remains the same)
+        };
+
+        function updateUserStats() {
+            document.getElementById('userLevel').textContent = userLevel;
+            document.getElementById('userXP').textContent = `${userXP}/100`;
+            document.getElementById('userStreak').textContent = `${userStreak} days`;
+            document.getElementById('completedLessons').textContent = completedLessons;
+            document.getElementById('completedProjects').textContent = completedProjects;
+            
+            // Level up logic
+            if (userXP >= 100) {
+                userLevel++;
+                userXP = 0;
+                alert(`🎉 Level Up! You're now Level ${userLevel}`);
+            }
+        }
+
+        // Progress Animation
+        function animateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            
+            // Simulate progress data
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 1;
+                progressFill.style.width = `${progress}%`;
+                
+                if (progress >= 45) {
+                    clearInterval(progressInterval);
+                }
+            }, 30);
+        }
+
+        // Neural Network Configuration
+        const layers = [3, 4, 4, 2]; // Number of neurons in each layer
+        let connections = [];
+        let isTraining = false;
+        let trainingInterval;
+        let epoch = 0;
+        let accuracy = 0;
+        let loss = 1.0;
+
+        // Initialize the neural network visualization
+        function initNeuralNetwork() {
+            const container = document.getElementById('neuralNetwork');
+            container.innerHTML = '';
+            connections = [];
+            
+            // Create layers with proper positioning
+            layers.forEach((neuronCount, layerIndex) => {
+                const layer = document.createElement('div');
+                layer.className = 'neural-layer';
+                layer.style.left = `${(layerIndex / (layers.length - 1)) * 80 + 10}%`;
+                
+                // Create neurons
+                for (let i = 0; i < neuronCount; i++) {
+                    const neuron = document.createElement('div');
+                    neuron.className = 'neuron';
+                    neuron.id = `neuron-${layerIndex}-${i}`;
+                    layer.appendChild(neuron);
+                }
+                
+                container.appendChild(layer);
+            });
+            
+            // Create proper connections between layers
+            for (let i = 0; i < layers.length - 1; i++) {
+                const currentLayer = container.children[i];
+                const nextLayer = container.children[i + 1];
+                
+                const currentNeurons = currentLayer.children;
+                const nextNeurons = nextLayer.children;
+                
+                // Connect each neuron in current layer to each neuron in next layer
+                for (let j = 0; j < currentNeurons.length; j++) {
+                    for (let k = 0; k < nextNeurons.length; k++) {
+                        createProperConnection(i, j, i+1, k, currentNeurons[j], nextNeurons[k]);
+                    }
+                }
+            }
+        }
+
+        // Create proper connection between two neurons
+        function createProperConnection(fromLayer, fromNeuron, toLayer, toNeuron, fromElement, toElement) {
+            const container = document.getElementById('neuralNetwork');
+            const containerRect = container.getBoundingClientRect();
+            
+            const fromRect = fromElement.getBoundingClientRect();
+            const toRect = toElement.getBoundingClientRect();
+            
+            // Calculate positions relative to container
+            const fromX = fromRect.left + fromRect.width/2 - containerRect.left;
+            const fromY = fromRect.top + fromRect.height/2 - containerRect.top;
+            const toX = toRect.left + toRect.width/2 - containerRect.left;
+            const toY = toRect.top + toRect.height/2 - containerRect.top;
+            
+            const length = Math.sqrt(Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2));
+            const angle = Math.atan2(toY - fromY, toX - fromX) * 180 / Math.PI;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            connection.id = `connection-${fromLayer}-${fromNeuron}-${toLayer}-${toNeuron}`;
+            
+            connection.style.width = `${length}px`;
+            connection.style.top = `${fromY}px`;
+            connection.style.left = `${fromX}px`;
+            connection.style.transform = `rotate(${angle}deg)`;
+            connection.style.opacity = 0.3;
+            
+            // Store connection data
+            connections.push({
+                element: connection,
+                fromLayer,
+                fromNeuron,
+                toLayer,
+                toNeuron,
+                weight: Math.random() // Random initial weight
+            });
+            
+            container.appendChild(connection);
+        }
+
+        // Activate the neural network (forward propagation)
+        function activateNetwork() {
+            resetNetwork();
+            
+            // Animate forward propagation
+            let delay = 0;
+            const layers = document.querySelectorAll('.neural-layer');
+            
+            layers.forEach((layer, layerIndex) => {
+                const layerNeurons = layer.querySelectorAll('.neuron');
+                
+                layerNeurons.forEach((neuron, neuronIndex) => {
+                    setTimeout(() => {
+                        neuron.classList.add('active');
+                        
+                        // Activate connections from this neuron to next layer
+                        if (layerIndex < layers.length - 1) {
+                            const nextLayerNeurons = layers[layerIndex + 1].querySelectorAll('.neuron');
+                            
+                            nextLayerNeurons.forEach((nextNeuron, nextIndex) => {
+                                const connection = document.getElementById(`connection-${layerIndex}-${neuronIndex}-${layerIndex+1}-${nextIndex}`);
+                                if (connection) {
+                                    setTimeout(() => {
+                                        connection.classList.add('active');
+                                    }, 200);
+                                }
+                            });
+                        }
+                    }, delay);
+                    
+                    delay += 100;
+                });
+                
+                delay += 300;
+            });
+
+            // Award XP for interaction
+            userXP += 10;
+            updateUserStats();
+        }
+
+        // Train the neural network (simulate backpropagation)
+        function trainNetwork() {
+            if (isTraining) return;
+            
+            isTraining = true;
+            epoch = 0;
+            accuracy = 0;
+            loss = 1.0;
+            
+            document.getElementById('trainAI').disabled = true;
+            document.getElementById('trainAI').textContent = 'Training...';
+            
+            trainingInterval = setInterval(() => {
+                epoch++;
+                accuracy = Math.min(95, accuracy + Math.random() * 10);
+                loss = Math.max(0.05, loss - Math.random() * 0.1);
+                
+                updateTrainingStats();
+                
+                // Simulate weight adjustments
+                adjustWeights();
+                
+                // Every few epochs, show forward propagation
+                if (epoch % 3 === 0) {
+                    simulateForwardPropagation();
+                }
+                
+                // Stop after 10 epochs
+                if (epoch >= 10) {
+                    stopTraining();
+                }
+            }, 1500);
+        }
+
+        // Adjust connection weights (simulate backpropagation)
+        function adjustWeights() {
+            connections.forEach(conn => {
+                // Randomly adjust weight (simulating learning)
+                const adjustment = (Math.random() - 0.5) * 0.2;
+                conn.weight = Math.max(0.1, Math.min(1, conn.weight + adjustment));
+                
+                // Update connection appearance based on weight
+                conn.element.classList.remove('strong', 'weak', 'active');
+                
+                if (conn.weight > 0.7) {
+                    conn.element.classList.add('strong');
+                } else if (conn.weight < 0.3) {
+                    conn.element.classList.add('weak');
+                }
+            });
+        }
+
+        // Simulate forward propagation during training
+        function simulateForwardPropagation() {
+            const neurons = document.querySelectorAll('.neuron');
+            
+            // Reset activation
+            neurons.forEach(neuron => {
+                neuron.classList.remove('active');
+            });
+            
+            // Activate neurons with delay
+            let delay = 0;
+            const layers = document.querySelectorAll('.neural-layer');
+            
+            layers.forEach((layer, layerIndex) => {
+                const neurons = layer.querySelectorAll('.neuron');
+                
+                neurons.forEach((neuron, neuronIndex) => {
+                    setTimeout(() => {
+                        neuron.classList.add('active');
+                    }, delay);
+                    
+                    delay += 100;
+                });
+                
+                delay += 200;
+            });
+        }
+
+        // Update training statistics
+        function updateTrainingStats() {
+            document.getElementById('epochCount').textContent = epoch;
+            document.getElementById('accuracy').textContent = `${Math.round(accuracy)}%`;
+            document.getElementById('loss').textContent = loss.toFixed(2);
+        }
+
+        // Stop training
+        function stopTraining() {
+            clearInterval(trainingInterval);
+            isTraining = false;
+            document.getElementById('trainAI').disabled = false;
+            document.getElementById('trainAI').textContent = 'Train Model';
+            
+            // Award XP for training
+            userXP += 25;
+            updateUserStats();
+        }
+
+        // Reset the neural network
+        function resetNetwork() {
+            // Stop any ongoing training
+            if (isTraining) {
+                stopTraining();
+            }
+            
+            // Reset neurons
+            const neurons = document.querySelectorAll('.neuron');
+            neurons.forEach(neuron => {
+                neuron.classList.remove('active');
+            });
+            
+            // Reset connections
+            const connectionElements = document.querySelectorAll('.connection');
+            connectionElements.forEach(conn => {
+                conn.classList.remove('active', 'strong', 'weak');
+                conn.style.opacity = '0.3';
+            });
+            
+            // Reset stats
+            epoch = 0;
+            accuracy = 0;
+            loss = 1.0;
+            updateTrainingStats();
+        }
+
+        // Show level start modal with YouTube tutorials
+        function showLevelModal(level) {
+            currentLevel = level;
+            const modal = document.getElementById('levelModal');
+            const title = document.getElementById('modalLevelTitle');
+            const description = document.getElementById('modalLevelDescription');
+            const youtubeLinks = document.getElementById('levelYoutubeLinks');
+            
+            title.textContent = levelData[level].title;
+            description.textContent = levelData[level].description;
+            
+            // Add YouTube links
+            youtubeLinks.innerHTML = `
+                <h4><i class="fab fa-youtube"></i> Recommended Tutorials:</h4>
+                <ul>
+                    ${levelData[level].youtubeLinks.map(link => 
+                        `<li><a href="${link.url}" target="_blank"><i class="fab fa-youtube"></i> ${link.title}</a></li>`
+                    ).join('')}
+                </ul>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        // Show YouTube tutorials for a level
+        function showYouTubeTutorials(level) {
+            const modal = document.getElementById('levelModal');
+            const title = document.getElementById('modalLevelTitle');
+            const description = document.getElementById('modalLevelDescription');
+            const youtubeLinks = document.getElementById('levelYoutubeLinks');
+            const confirmBtn = document.getElementById('confirmLevel');
+            
+            title.textContent = `${levelData[level].title} - Tutorials`;
+            description.textContent = "Watch these tutorials to get started with this level:";
+            
+            // Add YouTube links
+            youtubeLinks.innerHTML = `
+                <h4><i class="fab fa-youtube"></i> Recommended Tutorials:</h4>
+                <ul>
+                    ${levelData[level].youtubeLinks.map(link => 
+                        `<li><a href="${link.url}" target="_blank"><i class="fab fa-youtube"></i> ${link.title}</a></li>`
+                    ).join('')}
+                </ul>
+            `;
+            
+            confirmBtn.textContent = "Start Level";
+            modal.style.display = 'flex';
+        }
+
+        // Start a level
+        function startLevel(level) {
+            // In a real app, this would redirect to the level content
+            alert(`Starting ${levelData[level].title}! Get ready to learn!`);
+            userXP += 15;
+            updateUserStats();
+        }
+
+        // Show project start modal with starter code
+        function showProjectModal(project) {
+            currentProject = project;
+            const modal = document.getElementById('projectModal');
+            const title = document.getElementById('modalProjectTitle');
+            const description = document.getElementById('modalProjectDescription');
+            const instructions = document.getElementById('projectInstructions');
+            const starterCode = document.getElementById('projectStarterCode');
+            
+            title.textContent = projectData[project].title;
+            description.innerHTML = `<p>${projectData[project].description}</p>`;
+            instructions.textContent = projectData[project].instructions;
+            starterCode.textContent = projectData[project].starterCode;
+            
+            modal.style.display = 'flex';
+        }
+
+        // Start a project
+        function startProject(project) {
+            // In a real app, this would redirect to the project content
+            alert(`Starting ${projectData[project].title}! Good luck with your project!`);
+            userXP += 20;
+            completedProjects++;
+            updateUserStats();
+        }
+
+        // Copy code to clipboard
+        function copyToClipboard() {
+            const codeElement = document.getElementById('projectStarterCode');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show confirmation
+            const copyBtn = document.getElementById('copyCode');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            animateProgress();
+            updateUserStats();
+            initNeuralNetwork();
+            
+            // Set up event listeners for neural network
+            document.getElementById('activateAI').addEventListener('click', activateNetwork);
+            document.getElementById('trainAI').addEventListener('click', trainNetwork);
+            document.getElementById('resetAI').addEventListener('click', resetNetwork);
+            
+            // Set up event listeners for level buttons
+            document.querySelectorAll('.start-level').forEach(button => {
+                button.addEventListener('click', function() {
+                    const level = parseInt(this.getAttribute('data-level'));
+                    showLevelModal(level);
+                });
+            });
+            
+            // Set up event listeners for YouTube buttons
+            document.querySelectorAll('.youtube-level').forEach(button => {
+                button.addEventListener('click', function() {
+                    const level = parseInt(this.getAttribute('data-level'));
+                    showYouTubeTutorials(level);
+                });
+            });
+            
+            // Set up event listeners for project buttons
+            document.querySelectorAll('.start-project').forEach(button => {
+                button.addEventListener('click', function() {
+                    const project = parseInt(this.getAttribute('data-project'));
+                    showProjectModal(project);
+                });
+            });
+            
+            // Set up event listeners for modal buttons
+            document.getElementById('confirmLevel').addEventListener('click', function() {
+                startLevel(currentLevel);
+                document.getElementById('levelModal').style.display = 'none';
+            });
+            
+            document.getElementById('cancelLevel').addEventListener('click', function() {
+                document.getElementById('levelModal').style.display = 'none';
+            });
+            
+            document.getElementById('closeLevelModal').addEventListener('click', function() {
+                document.getElementById('levelModal').style.display = 'none';
+            });
+            
+            document.getElementById('confirmProject').addEventListener('click', function() {
+                startProject(currentProject);
+                document.getElementById('projectModal').style.display = 'none';
+            });
+            
+            document.getElementById('cancelProject').addEventListener('click', function() {
+                document.getElementById('projectModal').style.display = 'none';
+            });
+            
+            document.getElementById('closeProjectModal').addEventListener('click', function() {
+                document.getElementById('projectModal').style.display = 'none';
+            });
+            
+            // Set up copy code button
+            document.getElementById('copyCode').addEventListener('click', copyToClipboard);
+            
+            // Set up event listeners for footer links
+            document.querySelectorAll('.footer-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Set up event listener for logo
+            document.getElementById('logo').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Set up event listener for hero CTA
+            document.getElementById('heroCTA').addEventListener('click', function() {
+                document.getElementById('learning-path').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Interactive Lesson Elements
+        document.getElementById('tryPrompt').addEventListener('click', function() {
+            const userPrompt = prompt("Try writing your own AI prompt. Be specific about what you want:");
+            if (userPrompt) {
+                if (userPrompt.length > 20) {
+                    alert("Great! That's a much better prompt. You're learning!");
+                    userXP += 15;
+                } else {
+                    alert("Try adding more details to make your prompt more effective.");
+                }
+                updateUserStats();
+            }
+        });
+
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                quizOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        document.getElementById('checkAnswer').addEventListener('click', function() {
+            const selectedOptions = document.querySelectorAll('.quiz-option.selected');
+            if (selectedOptions.length > 0) {
+                let correct = true;
+                
+                selectedOptions.forEach(option => {
+                    if (option.dataset.correct === "true") {
+                        option.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+                        option.style.borderColor = 'var(--success)';
+                    } else {
+                        option.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
+                        option.style.borderColor = 'var(--danger)';
+                        correct = false;
+                    }
+                });
+                
+                // Show all correct answers
+                quizOptions.forEach(option => {
+                    if (option.dataset.correct === "true") {
+                        option.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+                        option.style.borderColor = 'var(--success)';
+                    }
+                });
+                
+                if (correct) {
+                    alert('🎉 Correct! You earned 25 XP!');
+                    userXP += 25;
+                    completedLessons++;
+                } else {
+                    alert('Not quite right. Study the correct answers and try again!');
+                }
+                updateUserStats();
+            } else {
+                alert('Please select at least one answer first.');
+            }
+        });
+
+        // Lesson Navigation
+        document.getElementById('nextLesson').addEventListener('click', function() {
+            alert('Moving to next lesson! You completed this one.');
+            userXP += 30;
+            completedLessons++;
+            updateUserStats();
+        });
+
+        document.getElementById('prevLesson').addEventListener('click', function() {
+            alert('Moving to previous lesson.');
+        });
+
+        // AI Assistant
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+
+        // AI Knowledge Base
+        const aiKnowledge = {
+            greetings: [
+                "Hello! How can I help you with your AI learning journey today?",
+                "Hi there! What would you like to learn about AI?",
+                "Welcome! I'm here to help you master AI concepts. What's on your mind?"
+            ],
+            concepts: {
+                "machine learning": "Machine learning is a subset of AI that enables computers to learn and make decisions from data without being explicitly programmed. It uses algorithms to identify patterns in data and make predictions.",
+                "neural networks": "Neural networks are computing systems inspired by the human brain. They consist of interconnected nodes (neurons) that process information in layers, enabling complex pattern recognition.",
+                "deep learning": "Deep learning is a specialized form of machine learning that uses multi-layered neural networks to model and understand complex patterns in datasets. It's particularly powerful for image recognition, natural language processing, and other complex tasks.",
+                "natural language processing": "NLP is a branch of AI that focuses on enabling computers to understand, interpret, and generate human language. It's used in chatbots, translation services, and sentiment analysis.",
+                "computer vision": "Computer vision is a field of AI that enables machines to interpret and understand visual information from the world, similar to how humans use their eyes and brain.",
+                "reinforcement learning": "Reinforcement learning is a type of machine learning where an agent learns to make decisions by performing actions and receiving rewards or penalties, much like how humans learn from trial and error."
+            },
+            resources: {
+                "beginner": "For beginners, I recommend starting with understanding what AI can do for you. Try the 'AI Explorer' level in our learning path!",
+                "intermediate": "At the intermediate level, focus on mastering AI tools and prompt engineering. The 'AI Apprentice' level has great resources for this.",
+                "advanced": "Advanced learners should explore building custom AI solutions and workflows. Check out the 'AI Specialist' and 'AI Master' levels."
+            }
+        };
+
+        // Enhanced AI Response Generator
+        function generateAIResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Greeting detection
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return aiKnowledge.greetings[Math.floor(Math.random() * aiKnowledge.greetings.length)];
+            }
+            
+            // Concept explanations
+            for (const [concept, explanation] of Object.entries(aiKnowledge.concepts)) {
+                if (message.includes(concept)) {
+                    return explanation;
+                }
+            }
+            
+            // Resource recommendations
+            if (message.includes('beginner') || message.includes('start') || message.includes('new')) {
+                return aiKnowledge.resources.beginner;
+            }
+            if (message.includes('intermediate')) {
+                return aiKnowledge.resources.intermediate;
+            }
+            if (message.includes('advanced') || message.includes('expert')) {
+                return aiKnowledge.resources.advanced;
+            }
+            
+            // Default responses for unmatched queries
+            const defaultResponses = [
+                "That's an interesting question about AI! Could you provide more details so I can give you a more specific answer?",
+                "I'd be happy to help with that. Let me check my knowledge base and get back to you with a detailed explanation.",
+                "That's a great topic! I have extensive information about AI concepts. What specific aspect would you like me to explain?",
+                "I understand you're curious about AI. Could you rephrase your question or provide more context so I can assist you better?",
+                "I'd love to help you with that! Our learning platform has detailed resources on this topic. Would you like me to point you to the relevant section?"
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        sendMessage.addEventListener('click', function() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate AI thinking and response
+                setTimeout(() => {
+                    const aiResponse = generateAIResponse(message);
+                    addMessage(aiResponse);
+                }, 1000);
+
+                // Award XP for using the assistant
+                userXP += 5;
+                updateUserStats();
+            }
+        });
+
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
